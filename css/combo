@@ -1,0 +1,4 @@
+#!/bin/sh
+cat libraries.css template.css grids.css mod.css jobs.css > temp.css
+yc temp.css > combo.css
+rm temp.css

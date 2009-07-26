@@ -1,0 +1,4 @@
+#!/bin/sh
+cat jquery.js jquery.cookie.js jquery.json.js jquery.liveupdate.js jobs.js > temp.js
+yc temp.js > combo.js
+rm temp.js
