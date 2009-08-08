@@ -1,0 +1,9 @@
+- Change Job Filter to Keyword Filter
+- Move "Include jobs.." to the right of the Keyword filter
+- Move description text below the main heading
+- Add pagination of jobs
+- Add preview of job description
+- Change description to something more useful (add the related blog post)
+- Add job source (AU, oDesk, or FS, icon or text, but noticeable)
+- Add date
+- Add link to go directly to the job details page
