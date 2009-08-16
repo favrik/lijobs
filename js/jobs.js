@@ -7,36 +7,35 @@
     $(function () {
         $('#jobs').click(function (e) {
             var aha = $(e.target);
-            if (aha.is('a') && !aha.hasClass('visitJob')) {
-                aha.parents('.hd').siblings('.bd').toggle();
-                aha.parents('.jobItem').toggleClass('jobItemSelected');
-                if (!aha.hasClass('viewed')) {
-                    aha.addClass('viewed');
-                    var track    = aha.attr('id');
-                    var storage  = $.cookie('feedtrack');
-                    var json_str = '';
-                    if (storage == null) {
-                        storage = [];
-                        storage.push(track);
-                        json_str = $.jSONToString({t: storage});
-                    } else {
-                        storage = $.toJSON(storage);
-                        var l = storage.t.length;
-                        if (l >= c_size) {
-                            while (true) {
-                                storage.t.shift();
-                                if (storage.t.length < c_size) {
-                                    break;
-                                }
+            if (!aha.hasClass('hd')) {
+                aha = aha.parents('.hd');
+            }
+            aha.siblings('.bd').toggle();
+            if (!aha.hasClass('viewed')) {
+                aha.addClass('viewed');
+                var track = aha.attr('id');
+                console.log(track);
+                var storage  = $.cookie('feedtrack');
+                var json_str = '';
+                if (storage == null) {
+                    storage = [];
+                    storage.push(track);
+                    json_str = $.jSONToString({t: storage});
+                } else {
+                    storage = $.toJSON(storage);
+                    var l = storage.t.length;
+                    if (l >= c_size) {
+                        while (true) {
+                            storage.t.shift();
+                            if (storage.t.length < c_size) {
+                                break;
                             }
                         }
-                        storage.t.push(track);
-                        json_str = $.jSONToString({t: storage.t});
                     }
-                    $.cookie('feedtrack', json_str, { expires: c_expr, path: c_path });
+                    storage.t.push(track);
+                    json_str = $.jSONToString({t: storage.t});
                 }
-                aha.blur();
-                return false;
+                $.cookie('feedtrack', json_str, { expires: c_expr, path: c_path });
             }
         });
 
@@ -55,10 +54,13 @@
             var aha = $(e.target);
             if (aha.is('input')) {
                 feed_pref();
+                $('#filter').focus();
             }
         });
 
         feed_pref();
         $('#filter').liveUpdate('#jobs');
+
+        $('#filter').focus();
     });
 })(jQuery);

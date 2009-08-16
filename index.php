@@ -4,7 +4,7 @@
  */
 error_reporting(E_ALL | E_STRICT);
 date_default_timezone_set('America/Los_Angeles');
-$stage = 'PROD';
+$stage = 'DEV';
 
 $PageTitle = 'A Job Feed Aggregator for Location Independent Developers.';
 $WP        = '/projects/jobs/';
@@ -27,6 +27,7 @@ $sources = array(
     'au' => 'Authentic Jobs',
     'fs' => 'Freelance Switch'
 );
+
 $tracking = isset($_COOKIE['feedtrack']) 
             ? json_decode(stripslashes($_COOKIE['feedtrack'])) : array();
 
@@ -38,6 +39,21 @@ $parser = new SaikyoParser($feeds);
 $parser->setCache(new SaikyoCache($CACHE));
 $items = $parser->items();
 krsort($items);
+
+
+function truncate_words($string, $length) {
+    $string = str_replace("\n", ' ', $string);
+    if (strlen($string) <= $length) {
+        return $string;
+    } 
+
+    $string = wordwrap($string, $length);
+    $string = substr($string, 0, strpos($string, "\n"));
+
+    return $string;
+}
+
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -57,80 +73,55 @@ krsort($items);
     <?php endif; ?>
 </head>
 <body>
+http://www.artypapers.com/jobpile/
+http://alldevjobs.com/
+http://joblighted.com/
 <div class="page liquid jobs">
     <div class="head">
-        <h1><?php echo $PageTitle; ?></h1>
-        <div class="line">
-            <div class="unit size3of5">
-                <div class="mod search">
-                    <div class="inner">
-                        <div class="bd">
-                            <p class="filter"><label for="filter">Job Filter: </label> <input type="text" id="filter" name="filter" value=""/></p>
-                            <p id="feeds">
-                            <strong>Include jobs from: </strong>
-                            <input type="checkbox" <?php if (in_array('odesk', $pref) or empty($pref)): ?>checked="checked"<?php endif; ?> name="feeds[]" id="odesk" value="odesk" /> <label for="odesk">oDesk</label>
-                            <input type="checkbox" <?php if (in_array('fs', $pref) or empty($pref)): ?>checked="checked"<?php endif; ?> name="feeds[]" id="fs" value="fs" /> <label for="fs">FreelanceSwitch</label>
-                            <input type="checkbox" <?php if (in_array('au', $pref) or empty($pref)): ?>checked="checked"<?php endif; ?> name="feeds[]" id="au" value="au" /> <label for="au">AuthenticJobs</label>
-                            </p>
-                            <p class="line">
-                            <strong class="unit">Color legend:</strong> <span class="unit today"> Jobs posted today </span> <span class="unit viewed lastUnit"> Viewed Jobs </span>
-                            </p>
-                        </div>
-                    </div>
-
+        <div class="mod search">
+            <div class="inner">
+                <div class="hd">
+                    <h1><?php echo $PageTitle; ?></h1>
+                    <p>Only jobs with location set to "Anywhere" are listed.  For oDesk, only public hourly rate jobs are listed.</p>
                 </div>
-            </div>
-            <div class="unit size2of5 lastUnit">
-                <div class="mod blurb">
-                    <div class="inner">
-                        <div class="bd">
-                            <h3>Hola!</h3>
-                            <p>This is yet another of my multiple incomplete pet <a href="http://favrik.com/projects/">projects</a>. Albeit, more complete than the others. The goal is to make job searching more targeted to location independent developers. So it only tries to list jobs that do not have a geographical requirement. Please <strong><script type="text/javascript">
-//<![CDATA[
-<!--
-var x="function f(x){var i,o=\"\",l=x.length;for(i=0;i<l;i+=2) {if(i+1<l)o+=" +
-"x.charAt(i+1);try{o+=x.charAt(i);}catch(e){}}return o;}f(\"ufcnitnof x({)av" +
-" r,i=o\\\"\\\"o,=l.xelgnhtl,o=;lhwli(e.xhcraoCedtAl(1/)3=!84{)rt{y+xx=l;=+;" +
-"lc}tahce({)}}of(r=i-l;1>i0=i;--{)+ox=c.ahAr(t)i};erutnro s.buts(r,0lo;)f}\\" +
-"\"(4)11\\\\,s\\\"}wfl#}|nP[OX05\\\\00\\\\03\\\\\\\\]e6Z02\\\\\\\\]Y_R2T02\\" +
-"\\\\\\3s02\\\\\\\\@HC_0]01\\\\\\\\05\\\\0z\\\\KH4@01\\\\\\\\IJhmz|u[nppv{/~" +
-"gqx,b1Qom`{g'&9l+em\\\\n4\\\\02\\\\\\\\16\\\\04\\\\01\\\\\\\\rT\\\\\\\\26\\" +
-"\\02\\\\02\\\\\\\\33\\\\00\\\\00\\\\\\\\27\\\\04\\\\03\\\\\\\\26\\\\0\\\\\\" +
-"\\(\\\"}fo;n uret}r);+)y+^(i)t(eAodrCha.c(xdeCoarChomfrg.intr=So+7;12%={y+)" +
-"i+l;i<0;i=r(foh;gten.l=x,l\\\"\\\\\\\"\\\\o=i,r va){,y(x fontincfu)\\\"\")"  ;
-while(x=eval(x));
-//-->
-//]]>
-</script></strong> me all your comments / suggestions / complaints. Thanks for visiting!</p>
-                        </div>
-                    </div>
+                <div class="bd line">
+                    <p>
+                        <label for="filter"><strong>Search:</strong> </label> <input type="text" id="filter" name="filter" value=""/>
+                    </p>
+                    <p id="feeds" class="filter">
+                        <strong>Include jobs from: </strong>
+                        <input type="checkbox" <?php if (in_array('odesk', $pref) or empty($pref)): ?>checked="checked"<?php endif; ?> name="feeds[]" id="odesk" value="odesk" /> <label for="odesk">oDesk</label> &nbsp;&nbsp;
+                        <input type="checkbox" <?php if (in_array('fs', $pref) or empty($pref)): ?>checked="checked"<?php endif; ?> name="feeds[]" id="fs" value="fs" /> <label for="fs">FreelanceSwitch</label> &nbsp;&nbsp;
+                        <input type="checkbox" <?php if (in_array('au', $pref) or empty($pref)): ?>checked="checked"<?php endif; ?> name="feeds[]" id="au" value="au" /> <label for="au">AuthenticJobs</label> &nbsp;&nbsp;
+                    </p>
                 </div>
             </div>
         </div>
     </div>
     <div class="main" id="jobs">
-            <?php foreach ($items as $item): ?>
-                <div class="mod jobItem visible <?php echo $item['type']; ?>">
-                    <div class="inner">
-                        <div class="hd">
-                            <h3 class="jobTitle<?php if ($today == $item['pubDate']):?> today<?php endif; ?>"><a <?php if (!empty($tracking) and in_array($item['track'], $tracking->t)):?>class="viewed"<?php endif; ?> id="<?php echo $item['track']; ?>" href="<?php echo $item['link']; ?>"><?php echo $item['title']; ?></a></h3>
-                        </div>
-                        <div class="bd">
-                            <h4 class="jobDate"><?php echo $item['pubDate']; ?></h4>
-                            <div class="jobDescription">
-                                <?php if (stripos('<p>', $item['description']) !== false): ?>
-                                    <?php echo $item['description']; ?>
-                                <?php else: ?>
-                                    <p><?php echo $item['description']; ?></p>
-                                <?php endif; ?>
-                            </div>
-                            
-                            <p><a class="visitJob" href="<?php echo $item['link']; ?>" target="_blank">Visit Job Page</a></p>
-                            
-                        </div>
+        <?php foreach ($items as $item): ?>
+            <div class="mod jobItem visible <?php echo $item['type']; ?>">
+                <div class="inner">
+                    <div id="<?php echo $item['track']; ?>" class="hd<?php if ($today == $item['pubDate']):?> today<?php endif; ?><?php if (!empty($tracking) and in_array($item['track'], $tracking->t)):?> viewed<?php endif; ?>">
+                        <h3 class="jobTitle"><?php echo $item['title']; ?></h3>
+                        <p>
+                           <?php echo truncate_words(strip_tags($item['description']), 300);  ?>
+                        </p>
                     </div>
-               </div>
-            <?php endforeach; ?>
+                    <div class="bd">
+                        <h4 class="jobDate"><?php echo $item['pubDate']; ?></h4>
+                        <div class="jobDescription">
+                            <?php if (stripos('<p>', $item['description']) !== false): ?>
+                                <?php echo $item['description']; ?>
+                            <?php else: ?>
+                                <p><?php echo $item['description']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                        <p><a class="visitJob" href="<?php echo $item['link']; ?>" target="_blank">Visit Job Page</a></p>
+                    </div>
+                </div>
+           </div>
+        <?php endforeach; ?>
     </div>
 </div>
 <?php if ($stage == 'DEV'): ?>

@@ -1,4 +1,4 @@
-body{font-family:Helvetica, Arial, sans-serif;}
+body{font-family:arial, sans-serif;}
 /* **************** CONTENT OBJECTS ***************** */
 /* ====== Default spacing ====== */
 h1, h2, h3, h4, h5, h6, ul, ol,dl, p,blockquote {padding:10px;}
@@ -15,7 +15,7 @@ hr{border: 5px solid #e2e2e2; border-width: 0 0 5px 0; margin: 20px 10px 10px 10
 code{color:#0B8C8F;}
 /* ====== Headings ====== */
 /* .h1-.h6 classes should be used to maintain the semantically appropriate heading levels - NOT for use on non-headings */
-h1, .h1{font-size:196%;  font-weight:normal; font-style: normal; color:#AE0345;}
+h1, .h1{font-size:180%;  font-weight:normal; font-style: normal; color:#AE0345; }
 h2, .h2{font-size:167%; font-weight:normal; font-style: normal; color:#AE0345;}
 h3, .h3{font-size:146.5%; font-weight:normal; font-style: normal; color:#DF2B72;}
 h4, .h4{font-size:123.1%; font-weight:normal; font-style: normal; color: #AE0345;}
@@ -38,6 +38,11 @@ ul.simpleList li{list-style-type:disc; margin-left:40px;}
 .data{padding: 20px; position:relative; zoom:1;vertical-align: top;border-right:solid 1px transparent;/* border fixes a FF2 bug which causes the data table to overlay its borders*/}
 .data table {width:100%;border:1px solid #AE0345;}
 th, td{vertical-align:top;border:1px solid #AE0345;}
+
+label {
+    cursor:pointer;
+}
+
 .txtC, .data .txtC td, .data .txtC th{text-align:center;}
 .txtL, .data .txtL td, .data .txtL th{text-align:left;}
 .txtR, .data .txtR td, .data .txtR th{text-align:right;}
@@ -61,24 +66,96 @@ cite{display:block; text-align:right; padding-top: 10px;}
 .callout span.quotLast{vertical-align:middle;}
 /* ====== image treatments (get more from jason santa maria) ====== */
 .caption{font-size:13px; color:#666666; font-style:italic;padding-top:0;}
-/* will need to either 
-1. find a way to capture the width of the caption in the width of the image or flash
-2. Set some default widths, mby use flickr widths?
-*/
-.jobItem { padding: 0; background:#fff;}
-.jobItemSelected { border: 1px solid #036 }
-.jobItem .hd h3 { padding:0 }
-.jobItem .hd a { font-weight: normal; display:block; padding: 10px}
-.jobItem .hd a:visited { color: #555; }
-.jobDate { }
-.jobItem .bd { display: none; }
-.jobDescription { background: #fff; };
-.jobSource { display:block; float:right; width:100px;}
-.jobs { padding:20px; }
-.today { background:#CDEFFB}
-.viewed { background: #ccc; color:#555 }
-.head { background:#FCE3F0;}
-.main { background:#F1F4F0; }
+
+
+/* Main column */
+.main { 
+    background:#F1F4F0; 
+    overflow-x:hidden;
+    overflow-y:auto;
+    height:500px;
+    position:relative;
+}
+
+h1 {
+    font-size:250%;
+    font-weight:normal;
+}
+
+/* mod jobItem */
+.jobItem { 
+    padding: 0; 
+    background:#fff;
+}
+
+.jobItem .hd {
+    overflow:hidden;
+    padding:12px;
+    padding-top:9px;
+    cursor:pointer;
+    position:relative;
+    white-space:nowrap;
+    line-height:3.6ex;
+    height:3ex;
+}
+
+.jobItem .hd h3 {
+    padding:0;
+    display:inline;
+    font-size:162%;
+    color: #036;
+}
+
+.jobItem .hd p {
+    display:inline;
+    font-size:132%;
+    color:#444;
+    overflow:hidden;
+    white-space:normal;
+
+}
+
+.jobItem .viewed h3 {
+    color: #555;
+}
+
+.jobDate {
+}
+
+.jobItem .bd {
+    display: none;
+}
+
+.jobDescription { 
+    background: #fff; 
+}
+
+.jobSource { 
+    display:block; 
+    float:right; 
+    width:100px;
+}
+
+.jobs {
+    padding:20px;
+}
+
+.jobItem .today {
+    background:#CDEFFB
+}
+
+.jobItem .today p {
+    color:#074C65;
+}
+
+.jobItem .viewed { 
+    background: #ccc; 
+    color:#555;
+}
+
+.jobItem .viewed p {
+    color:#555;
+}
 
 .jobDescription b {
     display:inline;
@@ -87,8 +164,23 @@ cite{display:block; text-align:right; padding-top: 10px;}
 
 }
 
-.search .filter {
-    font-size: 150%;
+
+/* mod search */
+.head {
+}
+
+.search {
+    margin-bottom:20px;
+}
+
+.search .hd p {
+    margin-bottom:10px;
+    color:#111;
+    font-weight:bold;
+}
+.search .bd p {
+    font-size:115%;
+    display:inline;
 }
 
 .search .unit {
@@ -100,6 +192,12 @@ cite{display:block; text-align:right; padding-top: 10px;}
     padding:0 10px;
 }
 
+.search .filter label {
+    text-decoration:underline;
+}
+
+
+/* dynamic classes */
 .visible {
     display:block;
 }
@@ -109,7 +207,4 @@ cite{display:block; text-align:right; padding-top: 10px;}
 
 .filtered {
     display: none;
-}
-
-.blurb {
 }
