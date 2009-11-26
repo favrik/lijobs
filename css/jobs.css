@@ -115,6 +115,13 @@ h1 {
 
 }
 
+.jobItem .bd {
+    font-size:120%;
+    line-height:1.4em;
+}
+
+.jobItem br {
+}
 .jobItem .viewed h3 {
     color: #555;
 }
@@ -124,6 +131,7 @@ h1 {
 
 .jobItem .bd {
     display: none;
+    padding:20px;
 }
 
 .jobDescription { 

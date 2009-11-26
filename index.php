@@ -5,8 +5,7 @@
 error_reporting(E_ALL | E_STRICT);
 date_default_timezone_set('America/Los_Angeles');
 $stage = 'DEV';
-
-$PageTitle = 'A Job Feed Aggregator for Location Independent Developers.';
+$PageTitle = 'Jobs Anywhere!';
 $WP        = '/projects/jobs/';
 $CSS       = $WP . 'css/';
 $JS        = $WP . 'js/';
@@ -73,16 +72,18 @@ function truncate_words($string, $length) {
     <?php endif; ?>
 </head>
 <body>
+<!--
 http://www.artypapers.com/jobpile/
 http://alldevjobs.com/
 http://joblighted.com/
+-->
 <div class="page liquid jobs">
     <div class="head">
         <div class="mod search">
             <div class="inner">
                 <div class="hd">
                     <h1><?php echo $PageTitle; ?></h1>
-                    <p>Only jobs with location set to "Anywhere" are listed.  For oDesk, only public hourly rate jobs are listed.</p>
+                    <p>Yet another job feed aggregator. Only jobs with location set to &#8220;Anywhere&#8221; are listed.  For oDesk, only public hourly rate jobs are listed.</p>
                 </div>
                 <div class="bd line">
                     <p>
