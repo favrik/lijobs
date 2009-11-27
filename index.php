@@ -5,7 +5,7 @@
 error_reporting(E_ALL | E_STRICT);
 date_default_timezone_set('America/Los_Angeles');
 $stage = 'DEV';
-$PageTitle = 'Jobs Anywhere!';
+$PageTitle = 'Jobs Anywhere! ';
 $WP        = '/projects/jobs/';
 $CSS       = $WP . 'css/';
 $JS        = $WP . 'js/';
