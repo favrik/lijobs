@@ -42,7 +42,11 @@ class SaikyoCache {
     }
 
     public function get() {
-        return unserialize(file_get_contents($this->filename));
+        if (file_exists($this->filename)) {
+            return unserialize(file_get_contents($this->filename));
+        }
+
+        return array();
     }
 }
 
