@@ -20,9 +20,9 @@
                 if (storage == null) {
                     storage = [];
                     storage.push(track);
-                    json_str = $.jSONToString({t: storage});
+                    json_str = $.toJSON({t: storage});
                 } else {
-                    storage = $.toJSON(storage);
+                    storage = $.evalJSON(storage);
                     var l = storage.t.length;
                     if (l >= c_size) {
                         while (true) {
@@ -33,7 +33,7 @@
                         }
                     }
                     storage.t.push(track);
-                    json_str = $.jSONToString({t: storage.t});
+                    json_str = $.toJSON({t: storage.t});
                 }
                 $.cookie('feedtrack', json_str, { expires: c_expr, path: c_path });
             }
@@ -47,7 +47,7 @@
                 pref.push(this.value);
             });
             $('#filter').keyup();
-            $.cookie('feedpref', $.jSONToString(pref), { expires: c_expr, path: c_path });
+            $.cookie('feedpref', $.toJSON(pref), { expires: c_expr, path: c_path });
         }
 
         $('#feeds').click(function (e) {

@@ -4,7 +4,7 @@
  */
 error_reporting(E_ALL | E_STRICT);
 date_default_timezone_set('America/Los_Angeles');
-$stage = 'DEV';
+$stage = $_SERVER['HTTP_HOST'] == 'favrik' ? 'DEV' : 'PROD';
 $PageTitle = 'Jobs Anywhere!';
 $WP        = '/projects/jobs/';
 $CSS       = $WP . 'css/';
@@ -128,7 +128,7 @@ http://joblighted.com/
 <?php if ($stage == 'DEV'): ?>
 <script type="text/javascript" src="<?php echo $JS; ?>jquery.js"></script>
 <script type="text/javascript" src="<?php echo $JS; ?>jquery.liveupdate.js"></script>
-<script type="text/javascript" src="<?php echo $JS; ?>jquery.json.js"></script>
+<script type="text/javascript" src="<?php echo $JS; ?>jquery.json-2.2.min.js"></script>
 <script type="text/javascript" src="<?php echo $JS; ?>jquery.cookie.js"></script>
 <script type="text/javascript" src="<?php echo $JS; ?>jobs.js"></script>
 <?php else: ?>
