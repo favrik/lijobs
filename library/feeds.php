@@ -11,7 +11,7 @@ class SaikyoFeed {
 
 
     public function __construct() {
-        $this->refresh = 21600; // Default cache refresh of 12 hours
+        $this->refresh = 21600; // Default cache refresh of 6 hours
         $this->date = time();
         $this->init();
     }
@@ -102,7 +102,7 @@ class oDeskFeed extends SaikyoFeed {
 class AUFeed extends SaikyoFeed {
 
     public function init() {
-        $this->url = 'http://authenticjobs.com/rss/development.xml';
+        $this->url = 'http://authenticjobs.com/rss/index.xml';
         $this->id  = 'au';
     }
 

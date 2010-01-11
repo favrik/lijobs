@@ -5,7 +5,6 @@
 error_reporting(E_ALL | E_STRICT);
 date_default_timezone_set('America/Los_Angeles');
 $stage = $_SERVER['HTTP_HOST'] == 'favrik' ? 'DEV' : 'PROD';
-$PageTitle = 'Jobs Anywhere!';
 $WP        = '/projects/jobs/';
 $CSS       = $WP . 'css/';
 $JS        = $WP . 'js/';
@@ -51,16 +50,13 @@ function truncate_words($string, $length) {
 
     return $string;
 }
-
-
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title><?php echo $PageTitle; ?></title>
+	<title>Web development jobs. Anywhere!</title>
     <?php if ($stage == 'DEV'):?>
     <link rel="stylesheet" href="<?php echo $CSS; ?>libraries.css" media="all" type="text/css" />
     <link rel="stylesheet" href="<?php echo $CSS; ?>template.css" media="all" type="text/css" />
@@ -73,6 +69,7 @@ function truncate_words($string, $length) {
 </head>
 <body>
 <!--
+INSPIRATION:
 http://www.artypapers.com/jobpile/
 http://alldevjobs.com/
 http://joblighted.com/
@@ -82,8 +79,8 @@ http://joblighted.com/
         <div class="mod search">
             <div class="inner">
                 <div class="hd">
-                    <h1><?php echo $PageTitle; ?></h1>
-                    <p>Yet another job feed aggregator. Only jobs with location set to &#8220;Anywhere&#8221; are listed.  For oDesk, only public hourly rate jobs are listed.</p>
+                    <h1><span>Web development jobs.</span> Anywhere!</h1>
+                    <p>(Ideally) Only jobs where you can work from &#8220;Anywhere&#8221; are listed.  For oDesk, only public <em>hourly</em> jobs are listed.</p>
                 </div>
                 <div class="bd line">
                     <p>
@@ -110,6 +107,7 @@ http://joblighted.com/
                         </p>
                     </div>
                     <div class="bd">
+                        <h3><?php echo $item['title']; ?></h3>
                         <h4 class="jobDate"><?php echo $item['pubDate']; ?></h4>
                         <div class="jobDescription">
                             <?php if (stripos('<p>', $item['description']) !== false): ?>
@@ -124,7 +122,15 @@ http://joblighted.com/
            </div>
         <?php endforeach; ?>
     </div>
+
+    <div class="foot">
+
+        <p>A pet project by <a href="http://favrik.com">Favrik</a> &middot; Feeded by: <a href="http://authenticjobs.com">Authentic Jobs</a>, <a href="http://odesk.com">oDesk</a>, and <a href="http://jobs.freelanceswitch.com">FreelanceSwitch</a> &middot; <a href="http://github.com/favrik/lijobs">Fork me on github</a></p>
+
+    </div>
 </div>
+
+
 <?php if ($stage == 'DEV'): ?>
 <script type="text/javascript" src="<?php echo $JS; ?>jquery.js"></script>
 <script type="text/javascript" src="<?php echo $JS; ?>jquery.liveupdate.js"></script>

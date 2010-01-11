@@ -67,25 +67,74 @@ cite{display:block; text-align:right; padding-top: 10px;}
 /* ====== image treatments (get more from jason santa maria) ====== */
 .caption{font-size:13px; color:#666666; font-style:italic;padding-top:0;}
 
-
-/* Main column */
-.main { 
-    background:#F1F4F0; 
-    overflow-x:hidden;
-    overflow-y:auto;
-    height:500px;
-    position:relative;
+html {
+    background:#000;
 }
 
 h1 {
     font-size:250%;
+    color:#ff0f69;
     font-weight:normal;
 }
+
+h1 span {
+    color:#fff;
+}
+
+h4 { 
+    font-size:110%;
+    color:#666;
+}
+/* mod search */
+.head {
+    position: fixed;
+    z-index:9999;
+    width:100%;
+    background:#000;
+}
+
+.search {
+    margin-bottom:20px;
+}
+
+.search .hd p {
+    margin-bottom:10px;
+    color:#ccc;
+    font-weight:bold;
+    font-size:115%;
+    overflow:hidden;
+}
+.search .bd p {
+    font-size:115%;
+    display:inline;
+    color:#fff;
+}
+
+.search .unit {
+    margin-right:10px;
+
+}
+
+.search span {
+    padding:0 10px;
+}
+
+.search .filter label {
+    text-decoration:underline;
+}
+
+/* Main column */
+.main { 
+    padding-top:152px;
+}
+
+
 
 /* mod jobItem */
 .jobItem { 
     padding: 0; 
     background:#fff;
+    margin:0 20px;
 }
 
 .jobItem .hd {
@@ -95,20 +144,24 @@ h1 {
     cursor:pointer;
     position:relative;
     white-space:nowrap;
-    line-height:3.6ex;
+    line-height:3.7ex;
     height:3ex;
+    border:1px solid #ccc;
+    border-top:1px solid #ccc;
+
+    border-bottom:1px solid #eee;
 }
 
 .jobItem .hd h3 {
     padding:0;
     display:inline;
-    font-size:162%;
+    font-size:125%;
     color: #036;
 }
 
 .jobItem .hd p {
     display:inline;
-    font-size:132%;
+    font-size:115%;
     color:#444;
     overflow:hidden;
     white-space:normal;
@@ -122,9 +175,8 @@ h1 {
 
 .jobItem br {
 }
-.jobItem .viewed h3 {
-    color: #555;
-}
+
+
 
 .jobDate {
 }
@@ -145,24 +197,24 @@ h1 {
 }
 
 .jobs {
-    padding:20px;
+    padding:0 30px;
+    background:#000;
 }
 
 .jobItem .today {
-    background:#CDEFFB
 }
 
 .jobItem .today p {
-    color:#074C65;
 }
 
+.jobItem .viewed h3 {
+}
 .jobItem .viewed { 
-    background: #ccc; 
-    color:#555;
+    text-decoration:line-through;
 }
 
 .jobItem .viewed p {
-    color:#555;
+
 }
 
 .jobDescription b {
@@ -173,36 +225,6 @@ h1 {
 }
 
 
-/* mod search */
-.head {
-}
-
-.search {
-    margin-bottom:20px;
-}
-
-.search .hd p {
-    margin-bottom:10px;
-    color:#111;
-    font-weight:bold;
-}
-.search .bd p {
-    font-size:115%;
-    display:inline;
-}
-
-.search .unit {
-    margin-right:10px;
-
-}
-
-.search span {
-    padding:0 10px;
-}
-
-.search .filter label {
-    text-decoration:underline;
-}
 
 
 /* dynamic classes */
@@ -215,4 +237,13 @@ h1 {
 
 .filtered {
     display: none;
+}
+
+.foot {
+    padding:20px;
+    color:#fff;
+}
+
+.foot a {
+    color:cyan;
 }

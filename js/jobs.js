@@ -14,7 +14,6 @@
             if (!aha.hasClass('viewed')) {
                 aha.addClass('viewed');
                 var track = aha.attr('id');
-                console.log(track);
                 var storage  = $.cookie('feedtrack');
                 var json_str = '';
                 if (storage == null) {
@@ -41,7 +40,7 @@
 
         var feed_pref = function () {
             $('#jobs .jobItem').addClass('invisible').removeClass('visible');
-            var pref = []
+            var pref = [];
             $('input[name="feeds[]"]:checked').each(function () {
                 $('.' + this.value).removeClass('invisible').addClass('visible');
                 pref.push(this.value);
@@ -60,7 +59,6 @@
 
         feed_pref();
         $('#filter').liveUpdate('#jobs');
-
         $('#filter').focus();
     });
 })(jQuery);
