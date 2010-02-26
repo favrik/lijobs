@@ -102,7 +102,7 @@ class oDeskFeed extends SaikyoFeed {
 class AUFeed extends SaikyoFeed {
 
     public function init() {
-        $this->url = 'http://authenticjobs.com/rss/index.xml';
+        $this->url = 'http://www.authenticjobs.com/rss/index.xml';
         $this->id  = 'au';
     }
 
