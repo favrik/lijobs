@@ -101,7 +101,7 @@ http://joblighted.com/
             <div class="mod jobItem visible <?php echo $item['type']; ?>">
                 <div class="inner">
                     <div id="<?php echo $item['track']; ?>" class="hd<?php if ($today == $item['pubDate']):?> today<?php endif; ?><?php if (!empty($tracking) and in_array($item['track'], $tracking->t)):?> viewed<?php endif; ?>">
-                        <h3 class="jobTitle"><?php echo $item['title']; ?></h3>
+                        <h3 class="jobTitle"><span class="pubDate"><?php echo $item['pubDate']; ?></span> &nbsp;&nbsp; <?php echo $item['title']; ?></h3>
                         <p>
                            <?php echo truncate_words(strip_tags($item['description']), 300);  ?>
                         </p>
