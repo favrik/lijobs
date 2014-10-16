@@ -60,29 +60,6 @@ class SaikyoFeed {
 /**
  *
  */
-class FSFeed extends SaikyoFeed {
-    
-    public function init() {
-        $this->url = 'http://feeds.feedburner.com/FSJobsProgramming';
-        $this->id  = 'fs';
-    }
-
-    public function titleFilter($value) {
-        if (stripos($value, 'Anywhere') === false) {
-            return false;
-        }
-        return true;
-    }
-
-    public function titleFormatter($value) {
-        $pos =  strpos($value, '(');
-        return substr($value, 0, $pos);
-    }
-}
-
-/**
- *
- */
 class oDeskFeed extends SaikyoFeed {
 
     public function init() {
