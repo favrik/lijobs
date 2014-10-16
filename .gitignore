@@ -1,3 +1,6 @@
 cache/*
 *.swp
 mkmf.log
+phpunit.xml
+/vendor/
+composer.lock

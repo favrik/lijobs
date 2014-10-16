@@ -1,0 +1,20 @@
+{
+    "name": "saikyo/saikyo",
+    "description": "Parse feeds with filters, formatters, and per-feed configurations",
+    "require-dev": {
+        "phpunit/phpunit": "~4.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Favio Manriquez Leon",
+            "email": "favio@favrik.com"
+        }
+    ],
+    "require": {
+        "php": "~5.5"
+    },
+    "autoload": {
+        "psr-4": {"Saikyo\\": "src/Saikyo"}
+    }
+}
