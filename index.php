@@ -16,7 +16,6 @@ require 'library/cache.php';
 
 $feeds = array(
     new oDeskFeed(),
-    new FSFeed(),
     new AUFeed(),
 );
 
@@ -89,7 +88,6 @@ http://joblighted.com/
                     <p id="feeds" class="filter">
                         <strong>Include jobs from: </strong>
                         <input type="checkbox" <?php if (in_array('odesk', $pref) or empty($pref)): ?>checked="checked"<?php endif; ?> name="feeds[]" id="odesk" value="odesk" /> <label for="odesk">oDesk</label> &nbsp;&nbsp;
-                        <input type="checkbox" <?php if (in_array('fs', $pref) or empty($pref)): ?>checked="checked"<?php endif; ?> name="feeds[]" id="fs" value="fs" /> <label for="fs">FreelanceSwitch</label> &nbsp;&nbsp;
                         <input type="checkbox" <?php if (in_array('au', $pref) or empty($pref)): ?>checked="checked"<?php endif; ?> name="feeds[]" id="au" value="au" /> <label for="au">AuthenticJobs</label> &nbsp;&nbsp;
                     </p>
                 </div>
@@ -125,7 +123,7 @@ http://joblighted.com/
 
     <div class="foot">
 
-        <p>A pet project by <a href="http://favrik.com">Favrik</a> &middot; Feeded by: <a href="http://authenticjobs.com">Authentic Jobs</a>, <a href="http://odesk.com">oDesk</a>, and <a href="http://jobs.freelanceswitch.com">FreelanceSwitch</a> &middot; <a href="http://github.com/favrik/lijobs">Fork me on github</a></p>
+        <p>A pet project by <a href="http://favrik.com">Favrik</a> &middot; Feeded by: <a href="http://authenticjobs.com">Authentic Jobs</a>, <a href="http://odesk.com">oDesk</a> &middot; <a href="http://github.com/favrik/lijobs">Fork me on github</a></p>
 
     </div>
 </div>
